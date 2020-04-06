@@ -1,0 +1,49 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 256' fill='none'>
+	<g id='gm' stroke='black' stroke-width='24'>
+		<g id='g'>
+			<path d='
+			  M116 3V128.2
+			  M152 3V126
+			'/>
+		  <circle cx='64' cy='64' r='52'/>
+	  </g>
+	  <g id='m'>
+		  <path d='
+			  M152 48
+			  a32 32 0 0 1 64 0
+			  V126
+			  M216 48
+			  a32 32 0 0 1 64 0
+			  V126
+		  '/>
+	  </g>
+	  <circle cx='54' cy='128' r='62' stroke-dasharray='136 1000'/>
+	</g>
+	<g id='zero' stroke='black' stroke-width='8'>
+		<g id='z'>
+			<mask id='mask-z' stroke='none'>
+				<rect width='100%' height='100%' fill='white'/>
+				<circle cx='199' cy='158' r='26' fill='black'/>
+			</mask>
+		  <path d='M140 142h32l-26 32h36' mask='url(#mask-z)'/>
+		</g>
+		<g id='e'>
+			<circle cx='199' cy='158' r='18' stroke-dasharray='0 8 92'/>
+			<mask id='mask-e' stroke='none'>
+				<circle cx='199' cy='158' r='22' fill='white'/>
+			</mask>
+			<rect x='175' y='153' width='50' height='7.5' stroke='none' fill='black' mask='url(#mask-e)' transform='rotate(-10,198,158)'/>
+		</g>
+		<g id='r'>
+			<path d='M229 138v40'/>
+			<mask id='mask-r' stroke='none'>
+				<rect width='100%' height='100%' fill='white'/>
+				<circle cx='272' cy='158' r='26' fill='black'/>
+			</mask>
+			<circle cx='249' cy='160' r='20' stroke-dasharray='0 62.83185 1000' mask='url(#mask-r)'/>
+		</g>
+		<g id='o'>
+			<circle cx='272' cy='158' r='18'/>
+		</g>
+	</g>
+</svg>
