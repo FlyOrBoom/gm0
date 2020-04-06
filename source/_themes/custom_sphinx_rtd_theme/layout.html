@@ -139,7 +139,15 @@
 		<footer>{% include "versions.html" %}</footer>
 	</aside>
 	<main>
-		<nav>{% include "breadcrumbs.html" %}</nav>
+		<header>
+      <nav>
+        <li><a href="{{ pathto(master_doc) }}" class="icon icon-home"></a> &raquo;</li>
+        {% for doc in parents %}
+          <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> &raquo;</li>
+        {% endfor %}
+      </nav>
+      <a id='edit' href="https://{{ github_host|default("github.com") }}/{{ github_user }}/{{ github_repo }}/{{ theme_vcs_pageview_mode|default("blob") }}/{{ github_version }}{{ conf_py_path }}{{ pagename }}{{ suffix }}">Edit on GitHub</a>
+		</header>
 		<article>{% block body %}{% endblock %}</article>
 		<footer>
 			<p>
