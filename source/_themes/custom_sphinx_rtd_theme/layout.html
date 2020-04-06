@@ -105,150 +105,49 @@
     <link rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}" />
     {%- endif %}
   {%- endblock %}
-  {%- block extrahead %} {% endblock %}
 </head>
 
-<body class="wy-body-for-nav">
-  {% block extrabody %} {% endblock %}
-  <div class="wy-grid-for-nav">
-    {# SIDE NAV, TOGGLES ON MOBILE #}
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" {% if theme_style_nav_header_background %} style="background: {{theme_style_nav_header_background}}" {% endif %}>
-          {% block sidebartitle %}
-
-          {% if logo and theme_logo_only %}
-            <a href="{{ pathto(master_doc) }}">
-          {% else %}
-            <a href="{{ pathto(master_doc) }}" class="icon icon-home" alt="{{ _("Documentation Home") }}"> {{ project }}
-          {% endif %}
-
-          {% if logo %}
-            {# Not strictly valid HTML, but it's the only way to display/scale
-               it properly, without weird scripting or heaps of work
-            #}
-            <img src="{{ pathto('_static/' + logo, 1) }}" class="logo" alt="{{ _('Logo') }}"/>
-          {% endif %}
-          </a>
-
-          {% if theme_display_version %}
-            {%- set nav_version = version %}
-            {% if READTHEDOCS and current_version %}
-              {%- set nav_version = current_version %}
-            {% endif %}
-            {% if nav_version %}
-              <div class="version">
-                {{ nav_version }}
-              </div>
-            {% endif %}
-          {% endif %}
-
-          {% include "searchbox.html" %}
-
-          {% endblock %}
-        </div>
-
-        {% block navigation %}
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          {% block menu %}
-            {#
-              The singlehtml builder doesn't handle this toctree call when the
-              toctree is empty. Skip building this for now.
-            #}
-            {% if 'singlehtml' not in builder %}
-              {% set global_toc = toctree(maxdepth=theme_navigation_depth|int,
-                                          collapse=theme_collapse_navigation|tobool,
-                                          includehidden=theme_includehidden|tobool,
-                                          titles_only=theme_titles_only|tobool) %}
-            {% endif %}
-            {% if global_toc %}
-              {{ global_toc }}
-            {% else %}
-              <!-- Local TOC -->
-              <div class="local-toc">{{ toc }}</div>
-            {% endif %}
-          {% endblock %}
-        </div>
-        {% endblock %}
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      {# MOBILE NAV, TRIGGLES SIDE NAV ON TOGGLE #}
-      <nav class="wy-nav-top" aria-label="top navigation">
-        {% block mobile_nav %}
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        {% if logo and theme_logo_only %}
-            <a href="{{ pathto(master_doc) }}">
-          {% else %}
-            <a href="{{ pathto(master_doc) }}" class="icon icon-home" alt="{{ _("Documentation Home") }}"> {{ project }}
-          {% endif %}
-
-          {% if logo %}
-            {# Not strictly valid HTML, but it's the only way to display/scale
-               it properly, without weird scripting or heaps of work
-            #}
-            <img src="{{ pathto('_static/' + logo, 1) }}" class="logo" alt="{{ _('Logo') }}" style="height:45px;width:auto;background:#343131;"/>
-          {% endif %}
-          </a>
-        {% endblock %}
-      </nav>
-
-
-      <div class="wy-nav-content">
-
-        <header>          
-            <div class="container">
-                    <nav class="tabs-container"> 
-                        <ul>
-                            <li class="home "><a href="https://copperforge.cc/">Home</a></li>
-                            <li class="gm0 active"><a href="/">GM0</a></li>
-                            <li class="contact"><a href="mailto:gamemanual0@gmail.com">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-        </header>
-      {%- block content %}
-        {% if theme_style_external_links|tobool %}
-        <div class="rst-content style-external-links">
-        {% else %}
-        <div class="rst-content">
-        {% endif %}
-          {% include "breadcrumbs.html" %}
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-          {%- block document %}
-           <div itemprop="articleBody">
-            {% block body %}{% endblock %}
-           </div>
-           {% if self.comments()|trim %}
-           <div class="articleComments">
-            {% block comments %}{% endblock %}
-           </div>
-           {% endif%}
-          </div>
-          {%- endblock %}
-          {% include "footer.html" %}
-        </div>
-      {%- endblock %}
-      </div>
-
-    </section>
-
-  </div>
-  {% include "versions.html" %}
+<body>
+	<aside>
+		<nav>
+			<a id="home" title="Go to GM0 home" href="{{ pathto(master_doc) }}"><svg fill="none" height='100' viewBox="0 0 300 256"><g stroke="#000" stroke-width="24"><path d="m116 3v125.2m36-125.2v123"/><circle cx="64" cy="64" r="52"/><path d="m152 48a32 32 0 0 1 64 0v78m0-78a32 32 0 0 1 64 0v78"/><circle cx="54" cy="128" r="62" stroke-dasharray="136 1000"/></g><g stroke="#000" stroke-width="8"><mask id="f" stroke="none"><rect width="100%" height="100%" fill="#fff"/><circle cx="199" cy="158" r="26" fill="#000"/></mask><path d="m140 142h32l-26 32h36" mask="url(#f)"/><circle cx="199" cy="158" r="18" stroke-dasharray="0 8 92"/><mask id="d" stroke="none"><circle cx="199" cy="158" r="22" fill="#fff"/></mask><rect transform="rotate(-10,198,158)" x="175" y="153" width="50" height="7.5" fill="#000" mask="url(#d)" stroke="none"/><path d="m229 138v40"/><mask id="e" stroke="none"><rect width="100%" height="100%" fill="#fff"/><circle cx="272" cy="158" r="26" fill="#000"/></mask><circle cx="249" cy="160" r="20" mask="url(#e)" stroke-dasharray="0 62.83185 1000"/><circle cx="272" cy="158" r="18"/></g></svg></a>
+			{% block menu %}
+				{#
+					The singlehtml builder doesn't handle this toctree call when the
+					toctree is empty. Skip building this for now.
+				#}
+				{% if 'singlehtml' not in builder %}
+					{% set global_toc = toctree(maxdepth=theme_navigation_depth|int,
+																			collapse=theme_collapse_navigation|tobool,
+																			includehidden=theme_includehidden|tobool,
+																			titles_only=theme_titles_only|tobool) %}
+				{% endif %}
+				{% if global_toc %}
+					{{ global_toc }}
+				{% else %}
+					<!-- Local TOC -->
+					{{ toc }}
+				{% endif %}
+			{% endblock %}
+		</nav>
+		<footer>{% include "versions.html" %}</footer>
+	</aside>
+	<main>
+		<nav>{% include "breadcrumbs.html" %}</nav>
+		<article>{% block body %}{% endblock %}</article>
+		<footer>{% include "footer.html" %}</footer>
+	</main>
 
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable({{ 'true' if theme_sticky_navigation|tobool else 'false' }});
       });
   </script>
-
   {# Do not conflict with RTD insertion of analytics script #}
   {% if not READTHEDOCS %}
     {% if theme_analytics_id %}
     <!-- Theme Analytics -->
-    <script>
+	<script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -256,12 +155,6 @@
 
     ga('create', '{{ theme_analytics_id }}', 'auto');
     ga('send', 'pageview');
-    </script>
-
-    {% endif %}
-  {% endif %}
-
-  {%- block footer %} {% endblock %}
-
+	</script>
 </body>
 </html>
