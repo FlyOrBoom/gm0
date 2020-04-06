@@ -14,7 +14,6 @@
 <!DOCTYPE html>
 <html lang="{{ lang_attr }}" >
 <head>
-  <link href= "https://fonts.googleapis.com/css?family=Fira+Sans:700,800|Source+Sans+Pro:400,500&display=swap" rel="stylesheet">
   <meta charset="utf-8">
   {{ metatags }}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,10 +122,12 @@
 					toctree is empty. Skip building this for now.
 				#}
 				{% if 'singlehtml' not in builder %}
-					{% set global_toc = toctree(maxdepth=theme_navigation_depth|int,
-																			collapse=theme_collapse_navigation|tobool,
-																			includehidden=theme_includehidden|tobool,
-																			titles_only=theme_titles_only|tobool) %}
+					{% set global_toc = toctree(
+						maxdepth=theme_navigation_depth|int,
+						collapse=theme_collapse_navigation|tobool,
+						includehidden=theme_includehidden|tobool,
+						titles_only=theme_titles_only|tobool
+					)%}
 				{% endif %}
 				{% if global_toc %}
 					{{ global_toc }}
@@ -140,13 +141,13 @@
 	</aside>
 	<main>
 		<header>
-      <nav>
-        <li><a href="{{ pathto(master_doc) }}" class="icon icon-home"></a> &raquo;</li>
-        {% for doc in parents %}
-          <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> &raquo;</li>
-        {% endfor %}
-      </nav>
-      <a id='edit' href="https://{{ github_host|default("github.com") }}/{{ github_user }}/{{ github_repo }}/{{ theme_vcs_pageview_mode|default("blob") }}/{{ github_version }}{{ conf_py_path }}{{ pagename }}{{ suffix }}">Edit on GitHub</a>
+			<nav>
+				<li><a href="{{ pathto(master_doc) }}" class="icon icon-home"></a> &raquo;</li>
+				{% for doc in parents %}
+			  		<li><a href="{{ doc.link|e }}">{{ doc.title }}</a> &raquo;</li>
+				{% endfor %}
+			</nav>
+			<a id='edit' href="https://{{ github_host|default("github.com") }}/{{ github_user }}/{{ github_repo }}/{{ theme_vcs_pageview_mode|default("blob") }}/{{ github_version }}{{ conf_py_path }}{{ pagename }}{{ suffix }}">Edit on GitHub</a>
 		</header>
 		<article>{% block body %}{% endblock %}</article>
 		<footer>
