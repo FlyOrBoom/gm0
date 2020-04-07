@@ -22,185 +22,237 @@
 			title='{{ next.title|striptags|e }}'
 			href='{{ next.link|e }}'
 		/>
-		<link rel='prev' title='{{ prev.title|striptags|e }}' href='{{ prev.link|e }}' />
+		<link
+			rel='prev'
+			title='{{ prev.title|striptags|e }}'
+			href='{{ prev.link|e }}' />
 		<style>
-*{
+*,:hover,:focus{
 	box-sizing:border-box;
-	background-size:contain;
-	background-position:center;
-	background-repeat:no-repeat;
-}
-#search,code,pre{
+	transition:background 100ms;
+}#search,code,pre{
 	border:1px solid #ccc;
-}
-html{
+}button{
+	all:unset;
+}html{
 	font-size:12pt;
-}
-body{
+}body{
 	margin:0;
-	font-family:sans;
+	font-family:sans-serif;
 	line-height:1.7;
 	display:flex;
 	overflow:hidden;
-	background:#f8f8f8;
+	background-color:#f8f8f8;
 	color:#222;
-}
-article,aside{
 	height:100vh;
-	overflow:scroll;
-}
-article{
-	flex:1 0 64ch;
+}article,nav{
+	height:100%;
+	overflow:hidden scroll;
+}article{
 	display:flex;
-	flex-wrap:wrap;
-	justify-content:center;
-	border-left:solid 1px #0002;
+	flex:1 0 0;
+	flex-direction:column;
+	align-items:center;
+	border-left:solid 1px #ccc;
 	padding-bottom:25vh;
-}
-article>*{
+  scroll-behavior:smooth;
+}article>*{
 	width:calc(100vw - 4rem);
 	max-width:64ch;
-}
-p{
+}p{
 	margin:0;
-}
-*+p{
+}*+p{
 	margin-top:1rem;
-}
-a{
+}a{
 	text-decoration:none;
 	color:hsl(225deg,100%,35%);
-}
-a:hover,a:focus{
+}a:hover,a:focus{
 	color:hsl(225deg,100%,15%);
 	background-color:hsla(225deg,100%,50%,20%);
 	outline:.2rem solid hsla(225deg,100%,50%,20%);
-}
-a:active{
-	background-color:transparent;
-}
-h1,h2,h3,h4,h5,h6{
+}a:active{
+	background-color:white;
+}h1,h2,h3,h4{
 	margin:0;
 	line-height:1.25;
+}h2,h3,h4{
 	position:relative;
-}
-h1,#shortcuts{
+}h1,#shortcuts{
 	height:4rem;
 	display:flex;
-}
-h1{
+}h1{
+	flex:0 0 4rem;
+	white-space:nowrap;
 	max-width:none;
+	width:12rem;
 	font-weight:normal;
 	justify-content:center;
 	align-items:center;
-}
-h2{
+}h2{
 	margin-top:2rem;
-}
-h3{
+}h3{
 	margin-top:1rem;
-}
-code,pre{
-	background:white;
+}code,pre{
+	background-color:white;
 	padding:0 .2rem;
 	font-size:.9rem;
-}
-pre{
-	overflow:scroll;
+}pre{
+	overflow:scroll hidden;
 	padding:1rem;
 	border-radius:6px;
-}
-.headerlink{
+}h1>a.headerlink{
+	display:none;
+}a.headerlink{
+	display:block;
+	color:transparent;
+	outline:0;
+	height:0;
+	width:0;
+}h2::after,h3::after,h4::after,.headerlink::before,.headerlink::after{
+	content:'';
+	display:block;
 	position:absolute;
-	right:1rem;
-}
-.headerlink:hover,.headerlink:focus{
-outline:0;
-}
-aside{
+	width:calc(100% + 1rem);
+	height:2em;
+	top:-.4em;
+	transform:translateX(-.5rem);
+}.headerlink::before,.headerlink::after{
+	box-sizing:border-box;
+	color:black;
+	padding:.4em;
+	border-radius:6px;
+	width:100vw;
+	background-color:inherit;
+}.headerlink::before{
+	left:-.5rem;
+	transform:translateX(-100vw);
+	text-align:right;
+}.headerlink::after{
+	right:-.5rem;
+	transform:translateX(100vw);
+}nav{
 	flex:0 1 36ch;
 	padding-bottom:.25rem;
-}
-aside>*{
+}nav>*{
 	margin:0 2rem;
 	padding:1rem 0;
-}
-aside>*:not(:last-child),h1{
+}nav>:not(:last-child),h1{
 	border-bottom:1px solid #ccc;
-}
-#shortcuts{
+}#shortcuts{
 	padding:0;
-}
-#shortcuts>*{
+}#shortcuts>*{
+	flex:1 0 0;
+}#shortcuts>*,#actions>*{
 	color:transparent;
-	outline-color:transparent;
 	height:100%;
-}
-#shortcuts>*:hover,#shortcuts>*:focus{
-	background-color:#0002;
-}
-#shortcuts>*:active{
-	background-color:white;
-	outline-color:#0002;
-}
-a[hidden]{
+	background-size:contain;
+	background-position:center;
+	background-repeat:no-repeat;
+	user-select:none;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	text-align:center;
+	line-height:1.3;
+}#shortcuts>*,#actions>*,#table-of-contents a{
+	outline:0;
+}#shortcuts>:hover,#actions>:hover,
+#shortcuts>:focus,#actions>:focus,
+#table-of-contents a,.headerlink{
+	color:#222;
+	background-image:none;
+}:hover>.headerlink{
+	background-color:#eee;
+}#shortcuts>:hover,#actions>:hover,
+#table-of-contents a:hover,.headerlink:hover{
+	background-color:#ddd;
+}#shortcuts>:focus,#actions>:focus,
+#table-of-contents a:focus,.headerlink:focus{
+	background-color:#ccc;
+}#shortcuts>:active,#actions>:active,
+#table-of-contents a:active,
+#shortcuts>:hover:focus,#actions>:hover:focus,
+#table-of-contents a:hover:focus,.headerlink:hover:focus{
+	background-color:#bbb;
+	background-image:none;
+}a[hidden]{
 	display:inline;
 	visibility:hidden;
-}
-#previous,#next{
-	width:6rem;
-}
-#previous,#next,#menu{
+}#previous,#next,#menu{
 	background-size:auto 1.5rem;
-}
-#previous{
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath stroke='%23666' fill='none' stroke-linecap='round' stroke-linejoin='round' d='M5 1L1 6L5 11'/%3E%3C/svg%3E");
-}
-#next{
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath stroke='%23666' fill='none' stroke-linecap='round' stroke-linejoin='round' d='M1 1L5 6L1 11'/%3E%3C/svg%3E");
-}
-#home,#menu{
+}#previous{
+	background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath stroke='%23666' fill='none' stroke-linecap='round' stroke-linejoin='round' d='M5 1L1 6L5 11'/%3E%3C/svg%3E");
+}#next{
+	background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath stroke='%23666' fill='none' stroke-linecap='round' stroke-linejoin='round' d='M1 1L5 6L1 11'/%3E%3C/svg%3E");
+}#home,#menu{
 	flex:1 0 0;
-}
-#home{
+}#home{
 	background-size:3rem;
 	background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 300 200'%3E%3Cg stroke='%23666' stroke-width='24'%3E%3Cpath d='m116 3v125.2m36-125.2v123'/%3E%3Ccircle cx='64' cy='64' r='52'/%3E%3Cpath d='m152 48a32 32 0 0 1 64 0v78m0-78a32 32 0 0 1 64 0v78'/%3E%3Ccircle cx='54' cy='128' r='62' stroke-dasharray='136 1000'/%3E%3C/g%3E%3Cg stroke='%23666' stroke-width='8'%3E%3Cmask id='f' stroke='none'%3E%3Crect width='100%25' height='100%25' fill='%23fff'/%3E%3Ccircle cx='199' cy='158' r='26' fill='%23000'/%3E%3C/mask%3E%3Cpath d='m140 142h32l-26 32h36' mask='url(%23f)'/%3E%3Ccircle cx='199' cy='158' r='18' stroke-dasharray='0 8 92'/%3E%3Cmask id='d' stroke='none'%3E%3Ccircle cx='199' cy='158' r='22' fill='%23fff'/%3E%3C/mask%3E%3Crect transform='rotate(-10,198,158)' x='175' y='153' width='50' height='7.5' fill='%23666' mask='url(%23d)' stroke='none'/%3E%3Cpath d='m229 138v40'/%3E%3Cmask id='e' stroke='none'%3E%3Crect width='100%25' height='100%25' fill='%23fff'/%3E%3Ccircle cx='272' cy='158' r='26' fill='%23000'/%3E%3C/mask%3E%3Ccircle cx='249' cy='160' r='20' mask='url(%23e)' stroke-dasharray='0 62.83185 1000'/%3E%3Ccircle cx='272' cy='158' r='18'/%3E%3C/g%3E%3C/svg%3E%0A");
-}
-#menu{
+}#menu{
 	display:none;
+}#table-of-contents{
+	padding-bottom:0;
+}#table-of-contents ul{
+	list-style:none;
+	padding-left:1rem;
+	font-size:.95em;
+}#table-of-contents>ul{
+	padding-left:0;
+	font-size:1rem;
+}#table-of-contents a{
+	display:block;
+	width:100%;
+	padding:.2rem .5rem;
+}#search:hover,#search:focus{
+	outline:0;
+}#search:hover{
+	background-color:#ccc;
+}#search:focus{
+	background-color:white;
+}#search{
+	width:100%;
+	background-color:transparent;
+	font-size:inherit;
+	padding:.5rem;
+}#search::placeholder{
+	color:#888;
+	user-select:none;
+}#actions{
+	display:grid;
+	grid-template-columns:1fr 1fr;
+	grid-template-rows:repeat(2,3rem);
+	position:relative;
+}#actions>*{
+	background-size:1.5rem;
+}#edit,#view{
+	background-position:center .5rem;
 }
-#table-of-contents{
-
+#edit{
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' stroke='%23444' stroke-linejoin='round'%3E%3Cpath d='M1 11L2 9L7 4L8 5L3 10zM9 2L10 3L9.5 3.5L8.5 2.5z'/%3E%3C/svg%3E");
+}#view{
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 438.5 438.5' fill='%23444'%3E%3Cpath d='M409.132,114.573c-19.608-33.596-46.205-60.194-79.798-79.8C295.736,15.166,259.057,5.365,219.271,5.365c-39.781,0-76.472,9.804-110.063,29.408c-33.596,19.605-60.192,46.204-79.8,79.8C9.803,148.168,0,184.854,0,224.63c0,47.78,13.94,90.745,41.827,128.906c27.884,38.164,63.906,64.572,108.063,79.227c5.14,0.954,8.945,0.283,11.419-1.996c2.475-2.282,3.711-5.14,3.711-8.562c0-0.571-0.049-5.708-0.144-15.417c-0.098-9.709-0.144-18.179-0.144-25.406l-6.567,1.136c-4.187,0.767-9.469,1.092-15.846,1c-6.374-0.089-12.991-0.757-19.842-1.999c-6.854-1.231-13.229-4.086-19.13-8.559c-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559c-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-0.951-2.568-2.098-3.711-3.429c-1.142-1.331-1.997-2.663-2.568-3.997c-0.572-1.335-0.098-2.43,1.427-3.289c1.525-0.859,4.281-1.276,8.28-1.276l5.708,0.853c3.807,0.763,8.516,3.042,14.133,6.851c5.614,3.806,10.229,8.754,13.846,14.842c4.38,7.806,9.657,13.754,15.846,17.847c6.184,4.093,12.419,6.136,18.699,6.136c6.28,0,11.704-0.476,16.274-1.423c4.565-0.952,8.848-2.383,12.847-4.285c1.713-12.758,6.377-22.559,13.988-29.41c-10.848-1.14-20.601-2.857-29.264-5.14c-8.658-2.286-17.605-5.996-26.835-11.14c-9.235-5.137-16.896-11.516-22.985-19.126c-6.09-7.614-11.088-17.61-14.987-29.979c-3.901-12.374-5.852-26.648-5.852-42.826c0-23.035,7.52-42.637,22.557-58.817c-7.044-17.318-6.379-36.732,1.997-58.24c5.52-1.715,13.706-0.428,24.554,3.853c10.85,4.283,18.794,7.952,23.84,10.994c5.046,3.041,9.089,5.618,12.135,7.708c17.705-4.947,35.976-7.421,54.818-7.421s37.117,2.474,54.823,7.421l10.849-6.849c7.419-4.57,16.18-8.758,26.262-12.565c10.088-3.805,17.802-4.853,23.134-3.138c8.562,21.509,9.325,40.922,2.279,58.24c15.036,16.18,22.559,35.787,22.559,58.817c0,16.178-1.958,30.497-5.853,42.966c-3.9,12.471-8.941,22.457-15.125,29.979c-6.191,7.521-13.901,13.85-23.131,18.986c-9.232,5.14-18.182,8.85-26.84,11.136c-8.662,2.286-18.415,4.004-29.263,5.146c9.894,8.562,14.842,22.077,14.842,40.539v60.237c0,3.422,1.19,6.279,3.572,8.562c2.379,2.279,6.136,2.95,11.276,1.995c44.163-14.653,80.185-41.062,108.068-79.226c27.88-38.161,41.825-81.126,41.825-128.906C438.536,184.851,428.728,148.168,409.132,114.573z'/%3E%3C/svg%3E");
+}#pdf{
+	background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' stroke='%23444' fill='none' stroke-linejoin='round'%3E%3Cpath d='M2 2V10a1 1 0 0 0 1 1H8a1 1 0 0 0 1 -1V3l-2 -2H3a1 1 0 0 0 -1 1M4.7 8V4A1.5 1 0 0 1 4.7 6.5z'/%3E%3C/svg%3E");
 }
-#search:hover{
-background-color:#0002;
-outline:0;
+#epub{
+	background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' stroke='%23444' fill='none' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M2 2V10a1 1 0 0 0 1 1H8a1 1 0 0 0 1 -1V3l-2 -2H3a1 1 0 0 0 -1 1M5.5 6l1 -1l-1 -1l-2 2l2 2l2 -2'/%3E%3C/svg%3E");
 }
-#search:focus{
-background-color:white;
-outline:0;
-}
-#search{
-width:100%;
-background:0;
-font-size:inherit;
-padding:.5rem;
-}
-#search::placeholder{
-color:#888;
-}
-span#copperforge{
+#copperforge{
 	color:transparent;
 	display:inline-block;
 	height:2rem;
-	width:10rem;
-	background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 400' fill='black'%3E%3Cpath d='M556.433 215.194H535.66C529.185 227.062 520.283 236.772 508.952 243.785C497.622 251.068 484.942 254.574 471.454 254.574C451.221 254.574 433.955 247.292 419.657 232.187C405.629 217.891 398.884 200.359 398.884 179.859C398.884 159.36 405.629 141.827 419.657 127.262C426.131 120.518 433.955 115.124 442.858 111.078C451.49 107.032 460.123 104.874 468.756 104.874C477.119 104.874 484.403 105.953 490.877 107.841C510.571 113.775 525.409 125.643 535.39 143.715H556.163C549.149 126.453 538.088 112.427 522.711 101.637C507.064 90.8482 490.068 85.4536 471.454 85.4536C445.825 85.4536 424.243 94.8941 406.438 113.505C398.075 122.137 391.6 132.387 387.014 143.715C382.158 155.044 380 167.182 380 179.859C380 205.753 388.633 227.601 406.438 245.943C424.243 264.824 445.825 273.995 471.454 273.995C490.068 273.995 507.064 268.6 522.981 257.811C538.358 247.022 549.419 232.996 556.433 215.194Z'/%3E%3Cpath d='M679.249 211.418C679.249 223.286 674.933 233.266 666.57 241.627C657.937 250.259 647.956 254.305 636.085 254.305C624.215 254.305 613.964 250.259 605.601 241.627C596.968 233.266 592.921 223.286 592.921 211.418C592.921 199.549 596.968 189.569 605.601 180.938C613.964 172.576 624.215 168.261 636.085 168.261C647.956 168.261 657.937 172.576 666.57 180.938C674.933 189.569 679.249 199.549 679.249 211.418ZM698.134 211.418C698.134 194.425 691.929 179.859 679.789 167.721C667.649 155.583 653.081 149.38 636.085 149.38C618.82 149.38 604.252 155.583 592.112 167.721C579.972 179.859 574.037 194.425 574.037 211.418C574.037 228.68 579.972 243.246 592.112 255.114C604.252 267.252 619.09 273.186 636.085 273.186C652.811 273.186 667.649 267.252 679.789 255.114C691.929 243.246 698.134 228.68 698.134 211.418Z'/%3E%3Cpath d='M734.351 338.73V251.068C735.16 252.686 736.509 254.035 737.588 255.114C748.918 267.791 762.677 273.995 779.133 273.995C795.32 273.995 809.078 267.791 820.409 255.114C831.2 242.976 836.865 228.68 836.865 212.227C836.865 195.503 831.2 181.208 820.409 169.07C809.078 156.393 795.32 150.189 779.133 150.189C762.677 150.189 748.918 156.393 737.588 169.07C736.509 170.149 735.16 171.498 734.351 173.116V152.886H715.466V339L734.351 338.73ZM817.981 212.227C817.981 223.555 813.934 233.805 805.841 242.437C797.748 251.068 787.766 255.384 776.166 255.384C764.296 255.384 754.314 251.068 746.221 242.437C738.128 233.805 734.351 223.555 734.351 212.227C734.351 200.628 738.128 190.379 746.221 182.017C754.314 173.386 764.296 169.07 776.166 169.07C787.766 169.07 797.748 173.386 805.841 182.017C813.934 190.379 817.981 200.628 817.981 212.227Z'/%3E%3Cpath d='M873.219 338.73V251.068C874.028 252.686 875.377 254.035 876.456 255.114C887.787 267.791 901.545 273.995 918.002 273.995C934.188 273.995 947.947 267.791 959.277 255.114C970.068 242.976 975.734 228.68 975.734 212.227C975.734 195.503 970.068 181.208 959.277 169.07C947.947 156.393 934.188 150.189 918.002 150.189C901.545 150.189 887.787 156.393 876.456 169.07C875.377 170.149 874.028 171.498 873.219 173.116V152.886H854.335V339L873.219 338.73ZM956.849 212.227C956.849 223.555 952.803 233.805 944.709 242.437C936.616 251.068 926.635 255.384 915.034 255.384C903.164 255.384 893.182 251.068 885.089 242.437C876.996 233.805 873.219 223.555 873.219 212.227C873.219 200.628 876.996 190.379 885.089 182.017C893.182 173.386 903.164 169.07 915.034 169.07C926.635 169.07 936.616 173.386 944.709 182.017C952.803 190.379 956.849 200.628 956.849 212.227Z'/%3E%3Cpath d='M1116.7 209.26C1116.7 193.076 1110.23 179.05 1097.82 166.912C1085.68 155.314 1071.11 149.38 1054.65 149.38C1037.39 149.38 1022.82 155.583 1010.68 167.721C998.539 179.859 992.604 194.425 992.604 211.418C992.604 228.68 998.539 243.246 1010.68 255.114C1016.34 260.778 1022.82 265.094 1030.37 268.331C1037.93 271.567 1046.83 273.186 1057.35 273.186C1067.87 273.186 1078.12 269.949 1088.37 263.476C1098.63 257.002 1106.18 247.831 1111.3 236.503H1089.72C1085.41 242.167 1080.28 246.483 1074.08 249.719C1067.87 252.956 1061.4 254.574 1054.65 254.574C1044.4 254.574 1035.23 251.068 1027.14 244.594C1019.04 237.851 1013.92 229.49 1012.3 219.51H1116.7V209.26ZM1096.74 203.326H1012.57C1013.65 198.201 1015.53 193.615 1018.23 189.3C1026.87 175.274 1039.01 168.261 1054.65 168.261C1064.63 168.261 1073.54 171.498 1081.36 177.971C1089.45 184.714 1094.31 193.076 1096.74 203.326Z'/%3E%3Cpath d='M1193.68 177.162V152.616C1189.91 150.998 1185.86 150.189 1181.81 150.189C1168.33 150.189 1158.61 157.741 1152.41 172.307L1151.6 177.162V152.616H1132.72V271.298H1151.6V211.957C1151.6 202.247 1153.76 193.615 1158.34 185.793C1160.5 181.747 1163.47 178.241 1166.98 175.543C1170.48 172.846 1174.8 171.228 1179.66 171.228C1184.51 171.228 1189.1 173.386 1193.68 177.162Z'/%3E%3Cpath d='M1287.65 86.5325V69H1274.17C1260.68 69 1251.23 72.5065 1245.57 78.98C1239.9 85.4536 1234.71 94.8941 1234.71 106.762V152.616H1210.7V170.149H1234.71V271.298H1253.59V170.149H1285.16V152.616H1253.59V101.368C1253.59 97.3217 1256.9 93.8152 1259.06 90.8482C1260.95 88.1509 1264.99 86.5325 1271.2 86.5325H1287.65Z'/%3E%3Cpath d='M1399.06 211.418C1399.06 223.286 1394.74 233.266 1386.38 241.627C1377.74 250.259 1367.76 254.305 1355.89 254.305C1344.02 254.305 1333.77 250.259 1325.41 241.627C1316.77 233.266 1312.73 223.286 1312.73 211.418C1312.73 199.549 1316.77 189.569 1325.41 180.938C1333.77 172.576 1344.02 168.261 1355.89 168.261C1367.76 168.261 1377.74 172.576 1386.38 180.938C1394.74 189.569 1399.06 199.549 1399.06 211.418ZM1417.94 211.418C1417.94 194.425 1411.73 179.859 1399.59 167.721C1387.45 155.583 1372.89 149.38 1355.89 149.38C1338.63 149.38 1324.06 155.583 1311.92 167.721C1299.78 179.859 1293.84 194.425 1293.84 211.418C1293.84 228.68 1299.78 243.246 1311.92 255.114C1324.06 267.252 1338.9 273.186 1355.89 273.186C1372.62 273.186 1387.45 267.252 1399.59 255.114C1411.73 243.246 1417.94 228.68 1417.94 211.418Z'/%3E%3Cpath d='M1496.24 177.162V152.616C1492.46 150.998 1488.42 150.189 1484.37 150.189C1470.88 150.189 1461.17 157.741 1454.97 172.307L1454.16 177.162V152.616H1435.27V271.298H1454.16V211.957C1454.16 202.247 1456.31 193.615 1460.9 185.793C1463.06 181.747 1466.03 178.241 1469.53 175.543C1473.04 172.846 1477.36 171.228 1482.21 171.228C1487.07 171.228 1491.66 173.386 1496.24 177.162Z'/%3E%3Cpath d='M1611.59 211.957C1611.59 223.555 1607.54 233.805 1599.45 242.167C1591.35 250.798 1581.37 255.114 1569.77 255.114C1558.17 255.114 1548.19 250.798 1539.83 242.167C1531.73 233.805 1527.69 223.825 1527.69 211.957C1527.69 200.359 1531.73 190.379 1539.83 181.747C1548.19 173.116 1558.17 168.8 1569.77 168.8C1581.37 168.8 1591.35 173.116 1599.45 181.747C1607.54 190.379 1611.59 200.628 1611.59 211.957ZM1527.42 287.482H1507.99C1510.15 300.159 1515.82 311.218 1525.53 320.658C1537.4 332.796 1546.97 338.73 1563.97 338.73C1580.69 338.73 1600.26 332.796 1612.4 320.658C1624.27 308.79 1630.47 294.225 1630.47 277.232V152.616H1611.59V172.576C1610.51 171.498 1609.43 170.149 1608.35 168.8C1596.48 156.393 1582.72 149.919 1567.07 149.919C1550.35 149.919 1536.59 156.393 1525.26 168.8C1514.47 181.208 1509.07 195.503 1509.07 211.957C1509.07 228.68 1514.47 242.976 1525.26 255.114C1536.59 267.791 1550.35 273.995 1567.07 273.995C1583.26 273.995 1597.02 267.791 1608.35 255.114C1609.43 254.035 1610.51 252.686 1611.59 251.607V277.232C1611.59 289.1 1607.27 299.08 1598.91 307.442C1590.55 315.803 1580.56 319.849 1568.96 319.849C1557.09 319.849 1547.11 315.803 1538.75 307.442C1532.81 301.507 1529.04 295.034 1527.42 287.482Z'/%3E%3Cpath d='M1772 209.26C1772 193.076 1765.53 179.05 1753.12 166.912C1740.98 155.314 1726.41 149.38 1709.95 149.38C1692.69 149.38 1678.12 155.583 1665.98 167.721C1653.84 179.859 1647.9 194.425 1647.9 211.418C1647.9 228.68 1653.84 243.246 1665.98 255.114C1671.64 260.778 1678.12 265.094 1685.67 268.331C1693.23 271.567 1702.13 273.186 1712.65 273.186C1723.17 273.186 1733.42 269.949 1743.67 263.476C1753.93 257.002 1761.48 247.831 1766.6 236.503H1745.02C1740.71 242.167 1735.58 246.483 1729.38 249.719C1723.17 252.956 1716.7 254.574 1709.95 254.574C1699.7 254.574 1690.53 251.068 1682.43 244.594C1674.34 237.851 1669.22 229.49 1667.6 219.51H1772V209.26ZM1752.04 203.326H1667.87C1668.95 198.201 1670.83 193.615 1673.53 189.3C1682.17 175.274 1694.3 168.261 1709.95 168.261C1719.93 168.261 1728.84 171.498 1736.66 177.971C1744.75 184.714 1749.61 193.076 1752.04 203.326Z'/%3E%3Cpath d='M166 269.44L235.823 78.44H278.986L209.163 269.44H166Z' fill='%23C9803C'/%3E%3Cpath d='M232.014 269.44L301.837 78.44H345L275.177 269.44H232.014Z' fill='%23C9803C'/%3E%3C/svg%3E");
+	width:9rem;
+	background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='150 0 2000 400' fill='black'%3E%3Cpath d='M556.433 215.194H535.66C529.185 227.062 520.283 236.772 508.952 243.785C497.622 251.068 484.942 254.574 471.454 254.574C451.221 254.574 433.955 247.292 419.657 232.187C405.629 217.891 398.884 200.359 398.884 179.859C398.884 159.36 405.629 141.827 419.657 127.262C426.131 120.518 433.955 115.124 442.858 111.078C451.49 107.032 460.123 104.874 468.756 104.874C477.119 104.874 484.403 105.953 490.877 107.841C510.571 113.775 525.409 125.643 535.39 143.715H556.163C549.149 126.453 538.088 112.427 522.711 101.637C507.064 90.8482 490.068 85.4536 471.454 85.4536C445.825 85.4536 424.243 94.8941 406.438 113.505C398.075 122.137 391.6 132.387 387.014 143.715C382.158 155.044 380 167.182 380 179.859C380 205.753 388.633 227.601 406.438 245.943C424.243 264.824 445.825 273.995 471.454 273.995C490.068 273.995 507.064 268.6 522.981 257.811C538.358 247.022 549.419 232.996 556.433 215.194Z'/%3E%3Cpath d='M679.249 211.418C679.249 223.286 674.933 233.266 666.57 241.627C657.937 250.259 647.956 254.305 636.085 254.305C624.215 254.305 613.964 250.259 605.601 241.627C596.968 233.266 592.921 223.286 592.921 211.418C592.921 199.549 596.968 189.569 605.601 180.938C613.964 172.576 624.215 168.261 636.085 168.261C647.956 168.261 657.937 172.576 666.57 180.938C674.933 189.569 679.249 199.549 679.249 211.418ZM698.134 211.418C698.134 194.425 691.929 179.859 679.789 167.721C667.649 155.583 653.081 149.38 636.085 149.38C618.82 149.38 604.252 155.583 592.112 167.721C579.972 179.859 574.037 194.425 574.037 211.418C574.037 228.68 579.972 243.246 592.112 255.114C604.252 267.252 619.09 273.186 636.085 273.186C652.811 273.186 667.649 267.252 679.789 255.114C691.929 243.246 698.134 228.68 698.134 211.418ZM734.351 338.73V251.068C735.16 252.686 736.509 254.035 737.588 255.114C748.918 267.791 762.677 273.995 779.133 273.995C795.32 273.995 809.078 267.791 820.409 255.114C831.2 242.976 836.865 228.68 836.865 212.227C836.865 195.503 831.2 181.208 820.409 169.07C809.078 156.393 795.32 150.189 779.133 150.189C762.677 150.189 748.918 156.393 737.588 169.07C736.509 170.149 735.16 171.498 734.351 173.116V152.886H715.466V339L734.351 338.73ZM817.981 212.227C817.981 223.555 813.934 233.805 805.841 242.437C797.748 251.068 787.766 255.384 776.166 255.384C764.296 255.384 754.314 251.068 746.221 242.437C738.128 233.805 734.351 223.555 734.351 212.227C734.351 200.628 738.128 190.379 746.221 182.017C754.314 173.386 764.296 169.07 776.166 169.07C787.766 169.07 797.748 173.386 805.841 182.017C813.934 190.379 817.981 200.628 817.981 212.227ZM873.219 338.73V251.068C874.028 252.686 875.377 254.035 876.456 255.114C887.787 267.791 901.545 273.995 918.002 273.995C934.188 273.995 947.947 267.791 959.277 255.114C970.068 242.976 975.734 228.68 975.734 212.227C975.734 195.503 970.068 181.208 959.277 169.07C947.947 156.393 934.188 150.189 918.002 150.189C901.545 150.189 887.787 156.393 876.456 169.07C875.377 170.149 874.028 171.498 873.219 173.116V152.886H854.335V339L873.219 338.73ZM956.849 212.227C956.849 223.555 952.803 233.805 944.709 242.437C936.616 251.068 926.635 255.384 915.034 255.384C903.164 255.384 893.182 251.068 885.089 242.437C876.996 233.805 873.219 223.555 873.219 212.227C873.219 200.628 876.996 190.379 885.089 182.017C893.182 173.386 903.164 169.07 915.034 169.07C926.635 169.07 936.616 173.386 944.709 182.017C952.803 190.379 956.849 200.628 956.849 212.227ZM1116.7 209.26C1116.7 193.076 1110.23 179.05 1097.82 166.912C1085.68 155.314 1071.11 149.38 1054.65 149.38C1037.39 149.38 1022.82 155.583 1010.68 167.721C998.539 179.859 992.604 194.425 992.604 211.418C992.604 228.68 998.539 243.246 1010.68 255.114C1016.34 260.778 1022.82 265.094 1030.37 268.331C1037.93 271.567 1046.83 273.186 1057.35 273.186C1067.87 273.186 1078.12 269.949 1088.37 263.476C1098.63 257.002 1106.18 247.831 1111.3 236.503H1089.72C1085.41 242.167 1080.28 246.483 1074.08 249.719C1067.87 252.956 1061.4 254.574 1054.65 254.574C1044.4 254.574 1035.23 251.068 1027.14 244.594C1019.04 237.851 1013.92 229.49 1012.3 219.51H1116.7V209.26ZM1096.74 203.326H1012.57C1013.65 198.201 1015.53 193.615 1018.23 189.3C1026.87 175.274 1039.01 168.261 1054.65 168.261C1064.63 168.261 1073.54 171.498 1081.36 177.971C1089.45 184.714 1094.31 193.076 1096.74 203.326ZM1193.68 177.162V152.616C1189.91 150.998 1185.86 150.189 1181.81 150.189C1168.33 150.189 1158.61 157.741 1152.41 172.307L1151.6 177.162V152.616H1132.72V271.298H1151.6V211.957C1151.6 202.247 1153.76 193.615 1158.34 185.793C1160.5 181.747 1163.47 178.241 1166.98 175.543C1170.48 172.846 1174.8 171.228 1179.66 171.228C1184.51 171.228 1189.1 173.386 1193.68 177.162ZM1287.65 86.5325V69H1274.17C1260.68 69 1251.23 72.5065 1245.57 78.98C1239.9 85.4536 1234.71 94.8941 1234.71 106.762V152.616H1210.7V170.149H1234.71V271.298H1253.59V170.149H1285.16V152.616H1253.59V101.368C1253.59 97.3217 1256.9 93.8152 1259.06 90.8482C1260.95 88.1509 1264.99 86.5325 1271.2 86.5325H1287.65ZM1399.06 211.418C1399.06 223.286 1394.74 233.266 1386.38 241.627C1377.74 250.259 1367.76 254.305 1355.89 254.305C1344.02 254.305 1333.77 250.259 1325.41 241.627C1316.77 233.266 1312.73 223.286 1312.73 211.418C1312.73 199.549 1316.77 189.569 1325.41 180.938C1333.77 172.576 1344.02 168.261 1355.89 168.261C1367.76 168.261 1377.74 172.576 1386.38 180.938C1394.74 189.569 1399.06 199.549 1399.06 211.418ZM1417.94 211.418C1417.94 194.425 1411.73 179.859 1399.59 167.721C1387.45 155.583 1372.89 149.38 1355.89 149.38C1338.63 149.38 1324.06 155.583 1311.92 167.721C1299.78 179.859 1293.84 194.425 1293.84 211.418C1293.84 228.68 1299.78 243.246 1311.92 255.114C1324.06 267.252 1338.9 273.186 1355.89 273.186C1372.62 273.186 1387.45 267.252 1399.59 255.114C1411.73 243.246 1417.94 228.68 1417.94 211.418ZM1496.24 177.162V152.616C1492.46 150.998 1488.42 150.189 1484.37 150.189C1470.88 150.189 1461.17 157.741 1454.97 172.307L1454.16 177.162V152.616H1435.27V271.298H1454.16V211.957C1454.16 202.247 1456.31 193.615 1460.9 185.793C1463.06 181.747 1466.03 178.241 1469.53 175.543C1473.04 172.846 1477.36 171.228 1482.21 171.228C1487.07 171.228 1491.66 173.386 1496.24 177.162ZM1611.59 211.957C1611.59 223.555 1607.54 233.805 1599.45 242.167C1591.35 250.798 1581.37 255.114 1569.77 255.114C1558.17 255.114 1548.19 250.798 1539.83 242.167C1531.73 233.805 1527.69 223.825 1527.69 211.957C1527.69 200.359 1531.73 190.379 1539.83 181.747C1548.19 173.116 1558.17 168.8 1569.77 168.8C1581.37 168.8 1591.35 173.116 1599.45 181.747C1607.54 190.379 1611.59 200.628 1611.59 211.957ZM1527.42 287.482H1507.99C1510.15 300.159 1515.82 311.218 1525.53 320.658C1537.4 332.796 1546.97 338.73 1563.97 338.73C1580.69 338.73 1600.26 332.796 1612.4 320.658C1624.27 308.79 1630.47 294.225 1630.47 277.232V152.616H1611.59V172.576C1610.51 171.498 1609.43 170.149 1608.35 168.8C1596.48 156.393 1582.72 149.919 1567.07 149.919C1550.35 149.919 1536.59 156.393 1525.26 168.8C1514.47 181.208 1509.07 195.503 1509.07 211.957C1509.07 228.68 1514.47 242.976 1525.26 255.114C1536.59 267.791 1550.35 273.995 1567.07 273.995C1583.26 273.995 1597.02 267.791 1608.35 255.114C1609.43 254.035 1610.51 252.686 1611.59 251.607V277.232C1611.59 289.1 1607.27 299.08 1598.91 307.442C1590.55 315.803 1580.56 319.849 1568.96 319.849C1557.09 319.849 1547.11 315.803 1538.75 307.442C1532.81 301.507 1529.04 295.034 1527.42 287.482ZM1772 209.26C1772 193.076 1765.53 179.05 1753.12 166.912C1740.98 155.314 1726.41 149.38 1709.95 149.38C1692.69 149.38 1678.12 155.583 1665.98 167.721C1653.84 179.859 1647.9 194.425 1647.9 211.418C1647.9 228.68 1653.84 243.246 1665.98 255.114C1671.64 260.778 1678.12 265.094 1685.67 268.331C1693.23 271.567 1702.13 273.186 1712.65 273.186C1723.17 273.186 1733.42 269.949 1743.67 263.476C1753.93 257.002 1761.48 247.831 1766.6 236.503H1745.02C1740.71 242.167 1735.58 246.483 1729.38 249.719C1723.17 252.956 1716.7 254.574 1709.95 254.574C1699.7 254.574 1690.53 251.068 1682.43 244.594C1674.34 237.851 1669.22 229.49 1667.6 219.51H1772V209.26ZM1752.04 203.326H1667.87C1668.95 198.201 1670.83 193.615 1673.53 189.3C1682.17 175.274 1694.3 168.261 1709.95 168.261C1719.93 168.261 1728.84 171.498 1736.66 177.971C1744.75 184.714 1749.61 193.076 1752.04 203.326Z'/%3E%3Cpath d='M166 269.44L235.823 78.44H278.986L209.163 269.44H166ZM232.014 269.44L301.837 78.44H345L275.177 269.44H232.014Z' fill='%23C9803C'/%3E%3C/svg%3E");
+}::selection{
+	background-color:#cce;
+	color:inherit;
 }
 
 /* Pygment default-ish syntax highlighting.
  * Some colors are darkened to improve background contrast. */
 .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
+.highlight  { background-color: #f8f8f8; }
 .highlight .c { color: #306060; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #106010; font-weight: bold } /* Keyword */
@@ -270,18 +322,67 @@ span#copperforge{
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
 
 @media screen and (prefers-color-scheme:dark){
-body{
-		background:black;
+	body{
+		background-color:black;
 		filter:invert(1) hue-rotate(180deg);
-}
-	img{
+	}img{
 		filter:invert(1) hue-rotate(180deg);
 	}
-}
-@media screen and (min-height:480px) and (min-width:960px) {
+}@media screen and (min-height:480px) and (min-width:960px) {
 	#shortcuts,h1{
 		position:sticky;
-		background:#f8f8f8;
+		background-color:#f8f8f8;
+		top:0;
+		left:0;
+		margin:0;
+		width:100%;
+		height:4rem;
+		margin-bottom:1rem;
+		z-index:2;
+	}.section{
+		scroll-margin:4rem
+	}
+	.section .section{
+		scroll-margin:6rem
+	}
+}@media screen and (max-width:959px){
+	nav,article{
+		position:fixed;
+		width:100vw;
+	}nav{
+		top:0;
+		height:4rem;
+		background-color:#f8f8f8;
+		z-index:2;
+		overflow:hidden;
+	}nav>:not(#shortcuts){
+		visibility:hidden;
+	}.open{
+		height:100vh;
+		overflow:hidden scroll;
+	}.open>:not(#shortcuts){
+		visibility:visible;
+	}article{
+		top:4rem;
+		padding-top:.5rem;
+	}.open+article{
+		visibility:hidden;
+	}#menu{
+		display:flex;
+		cursor:pointer;
+		border:0;
+		background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath stroke='%23666' stroke-linecap='round' d='M1 2.5H11m0 3.5H1m0 3.5H11'/%3E%3C/svg%3E");
+	}#menu::before{
+		content:'Open';
+	}.open #menu{
+		background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath stroke='%23666' stroke-linecap='round' d='M1 1L11 11M1 11L11 1'/%3E%3C/svg%3E");
+	}.open #menu:hover,.open #menu:focus{
+		background-image:none;
+	}.open #menu::before{
+		content:'Close';
+	}#shortcuts{
+		position:sticky;
+		background-color:#f8f8f8;
 		top:0;
 		left:0;
 		margin:0;
@@ -291,87 +392,67 @@ body{
 		z-index:2;
 	}
 }
-@media screen and (max-width:960px){
-	body{
-		display:block;
-		height:100vh;
-		overflow:hidden;
+@media print{
+	html{
+		font-size:10pt;
+	}body{
+		overflow:auto;
+	}body,h1{
+		background-color:white;
+	}h1{
+		border:0;
+		flex:0 0 6rem;
+		flex-direction:column;
 	}
-	aside,article{
-		position:fixed;
-		width:100%;
-	}
-	aside{
-		top:0;
-		height:4rem;
-		background:#f8f8f8;
-		z-index:2;
-	}
-	aside.open{
-		height:100vh;
+	nav,a.headerlink{
+		display:none;
 	}
 	article{
-		top:4rem;
-		padding-top:1rem;
+		position:static;
+		height:max-content;
 		border:0;
+		padding-bottom:2rem;
 	}
-	#menu{
+	h1::after{
 		display:block;
-		cursor:pointer;
-		background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath stroke='%23666' stroke-linecap='round' d='M1 2.5H11m0 3.5H1m0 3.5H11'/%3E%3C/svg%3E");
-	}
-	.open #menu{
-		background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath stroke='%23666' stroke-linecap='round' d='M1 1L11 11M1 11L11 1'/%3E%3C/svg%3E");
-	}
-	#shortcuts{
-		position:sticky;
-		background:#f8f8f8;
-		top:0;
-		left:0;
-		margin:0;
-		width:100%;
-		height:4rem;
-		margin-bottom:1rem;
-		z-index:2;
+		color:#888;
+		font-size:1rem;
+		top:4rem;
+		content:'Game Manual 0';
 	}
 }
 		</style>
 </head>
 <body>
-	<aside>
-		<nav id='shortcuts'>
+	<nav>
+		<section id='shortcuts'>
 			<a
 				id='previous'
 				accesskey='p'
 				href='{{ prev.link|e }}'
-				title='{{ prev.title|striptags|e }}'
 				rel='prev'>
-				Previous
-			</a><div
-				tabindex='0'
+				Software
+			</a><button
 				id='menu'
 				accesskey='m'
 				href=''
-				title='Menu'
-				onclick='document.querySelector("aside").classList.toggle("open")'
-				>
-				Menu
-			</div><a
+				tabindex='0'
+				onclick='const nav=document.querySelector("nav");nav.classList.toggle("open");nav.scrollTo(0,0)'>
+				&nbsp;menu
+			</button><a
 				id='home'
 				accesskey='h'
-				title='Home'
 				href='{{ pathto(master_doc) }}'>
 				Home
 			</a><a
 				id='next'
 				accesskey='n'
 				href='{{ next.link|e }}'
-				title='{{ next.title|striptags|e }}'
 				rel='next'>
-				Next
+				Options for Programming
 			</a>
-		</nav>
-		<nav id='table-of-contents'>
+		</section>
+		<section id='table-of-contents'>
 			<form
 				role='search'
 				action='{{ pathto("search") }}'>
@@ -411,43 +492,41 @@ body{
 			<!--	{% endif %}-->
 			<!--{% endblock %}-->
 			<ul class="current">
+				<li class="toctree-l1"><a class="reference internal" href="../meta/index.html">About This Document</a></li>
+				<li class="toctree-l1"><a class="reference internal" href="../getting-started-in-ftc/index.html">Getting Started in FTC</a></li>
+				<li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware Basics</a><ul>
+					<li class="toctree-l2"><a class="reference internal" href="kit-and-hardware-guide/index.html">Kit and Hardware Guide</a></li>
+					<li class="toctree-l2"><a class="reference internal" href="materials-guide.html">Materials Guide</a></li>
+					<li class="toctree-l2"><a class="reference internal" href="tools-list.html">Tools List</a></li>
+					<li class="toctree-l2"><a class="reference internal" href="motor-guide/index.html">Motor Guide</a></li>
+					<li class="toctree-l2"><a class="reference internal" href="servo-guide/index.html">Servo Guide</a></li>
+				</ul></li>
+				<li class="toctree-l1"><a class="reference internal" href="../robot-design/index.html">Robot Design</a></li>
+				<li class="toctree-l1"><a class="reference internal" href="../power-and-electronics/index.html">Power And Electronics</a></li>
+				<li class="toctree-l1"><a class="reference internal" href="../software/index.html">Software</a></li>
+				<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+				</ul>
 
-<li class="toctree-l1"><a class="reference internal" href="../meta/index.html">About This Document</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting-started-in-ftc/index.html">Getting Started in FTC</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware Basics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kit-and-hardware-guide/index.html">Kit and Hardware Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="materials-guide.html">Materials Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tools-list.html">Tools List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="motor-guide/index.html">Motor Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="servo-guide/index.html">Servo Guide</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../robot-design/index.html">Robot Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../power-and-electronics/index.html">Power And Electronics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../software/index.html">Software</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
-</ul>
-
-		</nav>
+		</section>
 		<section id='actions'>
 			<a
 				id='edit'
 				accesskey='e'
-				href='https://github.com/coppersource/gm0/blob/{{github_version}}{{conf_py_path}}{{pagename}}{{suffix}}'>
-				Edit source
-			</a>
-			<a
-				id='view-pdf'
-				accesskey='v'>
+				href='https://github.com/coppersource/gm0/edit/master/{{conf_py_path}}{{pagename}}{{suffix}}'>
+				Edit
+			</a><a
+				id='view'
+				accesskey='v'
+				href='https://github.com/coppersource/gm0/view/master/{{conf_py_path}}{{pagename}}{{suffix}}'>
 				View source
-			</a>
-			<a
-				id='view-pdf'>
-				View PDF
-			</a>
-			<a
-				id='view-pdf'>
-				View EPUB
+			</a><a
+				id='pdf'
+				href='https://gm0.copperforge.cc/_/downloads/en/latest/pdf'>
+				View pdf
+			</a><a
+				id='epub'
+				href='https://gm0.copperforge.cc/_/downloads/en/latest/epub/'>
+				View epub
 			</a>
 			<!--{% include 'versions.html' %}-->
 		</section>
@@ -465,7 +544,7 @@ body{
 				Game Manual 0 is not affliated with FIRST&reg; or FIRST Tech Challenge&reg;. For official information, visit <a href='https://www.firstinspires.org/'>firstinspires.org</a>.
 			</p>
 		</footer>
-	</aside>
+	</nav>
 	<article>
 		<!--{% block body %}{% endblock %}-->
 <h1>Fundamental Concepts of Programming<a class="headerlink" href="#fundamental-concepts-of-programming" title="Permalink to this headline">¶</a></h1>
