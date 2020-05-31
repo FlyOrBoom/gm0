@@ -1,66 +1,22 @@
-======
-Wiring
-======
-Wiring is extremely important in FTC, as wires are crucial to the operation of
-the robot.
+Wiring Guide
+============
+
+Why does wiring matter? 
+=======================
+Have you ever looked inside your robot and thought "what a mess of wires"? 
+Wiring is extremely important in FTC, but is often overlooked or hastily done 
+the hour before competition starts. However, time spent in wiring the robot properly 
+is crucial to the performance and maintenance of the robot. 
 It is highly discouraged for teams to overlook wiring,
-but many new teams seems to disregard it or throw it to the very last moment.
-While tedious and sometimes no fun,
-wiring can mean the difference between a win and loss.
+but many new teams seem to disregard it or put little thought into wiring the robot properly. 
 
-Connectors and Wires
-====================
-There are many types of connectors for use in FTC.
-Here are the most common connectors you will find on an FTC robot.
+While tedious and often no fun, wiring can mean the difference between a win and loss.
+The best robot in the world won't be able to work if a wire is loose or gets tangled up in 
+the middle of a match. Thus it is imperative that wiring is purposefully thought out when 
+designing and building a robot. 
 
-* Powerpoles
 
-    .. image:: images/wiring/powerpole-connector.png
-        :alt: A powerpole connector
-        :width: 200px
-
-    * Used for module power
-    * Used for motor power
-* XT30
-
-    .. image:: images/wiring/xt30-connector.png
-        :alt: A XT30 connector
-        :width: 200px
-
-    * Used for module power
-* JST-VH
-
-    .. image:: images/wiring/jst-vh-connector.png
-        :alt: A JST-VH connector
-        :width: 200px
-
-    * Used for motor power
-* Dupont 0.1”
-
-    .. image:: images/wiring/dupont-connector.png
-        :alt: A Dupont 0.1" connector
-        :width: 200px
-
-    * Used for sensors
-    * Used for servo wires
-* JST-PH and JST-XH
-    .. image:: images/wiring/jst-sensor-connectors.png
-        :alt: JST-PH and JST-XH connectors
-        :width: 200px
-
-    * Used for sensors
-* Tamiya
-    .. image:: images/wiring/tamiya-connector.png
-        :alt: A Tamiya connector
-        :width: 200px
-
-    .. warning::
-        Do not use these connectors!
-        The metal connectors are fragile and will lead to random disconnects.
-
-    * Used for module power
-
-FTC Wiring Guide
+FIRST FTC Wiring Guide
 ================
 FIRST has created a wiring guide to help teams with tasks like crimping cables,
 soldering connections, and ESD mitigation that won’t be covered in this guide.
@@ -77,6 +33,9 @@ General Advice
 --------------
 * **Always label wires! When bunched up, you may not know which wire goes into
   which port**.
+* Tie together loose wires, and better yet, tie that bunch of wires to a
+  structural component.
+  This will ensure that wires don't interfere with your mechanisms.
 * **Treat every wire connection as a point of failure**.
   Therefore, use electrical tape to tape up and insulate connections and
   utilize strain relief as much as possible.
@@ -143,6 +102,14 @@ Take the time to lay out something like an electronics panel if necessary!
 When building the robot, devote adequate space to wiring.
 This could mean mounting a PVC pipe and running wires from the back end of the
 robot through it, or simply using velcro or zipties.
+
+..  tip:: Make sure that wires are as short as possible to reduce the risk of entanglement.
+
+However, as components move out of the robot, the wires move with it.
+Tying down every loose inch will result in wire disconnecting.
+Wiring is the art of finding the perfect balance between shortest length and
+allowing enough freedom as mechanisms need.
+
 **It is also recommended for electronics to be mounted on a nonconductive
 material such as wood to prevent ESD**.
 
@@ -222,12 +189,14 @@ Power distribution blocks/panels
     connectors (2 on each Expansion Hub).
     The block can be connected to the Servo Power Module to boost voltage for
     servos or provide continuous rotation for the VEX 393 EDR.
-Dryer sheet
+Dryer sheets
     Dryer sheets can be used to wipe down the robot after every match in order
     to reduce static buildup.
     This is not directly recommended by FIRST or any vendor,
     but our empirical evidence throughout the years suggests that it helps,
     or at the very least, can’t hurt to do so.
+    However, dryer sheets may or may not be on the boundary of legality,
+    as grounding the robot to he ground is illegal.
 Staticide/static spray
     Staticide is a spray that helps to keep static off of the robot.
     Please be sure to spray your robot before an event and not during the
